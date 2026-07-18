@@ -1,11 +1,11 @@
 import pygame
+import sys
 from player import Player
 from constants import SCREEN_HEIGHT
 from constants import SCREEN_WIDTH 
 from logger import log_state, log_event
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
-
 def main():
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
@@ -35,7 +35,7 @@ def main():
             if player.circle_shape(asteroid):
                 log_event("player_hit")
                 print("Game Over!")
-                return
+                sys.exit()
             player.circle_shape(asteroid)
         
         for draw in drawable:
