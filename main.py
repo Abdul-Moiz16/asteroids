@@ -2,7 +2,7 @@ import pygame
 from player import Player
 from constants import SCREEN_HEIGHT
 from constants import SCREEN_WIDTH 
-from logger import log_state
+from logger import log_state, log_event
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 
@@ -30,6 +30,13 @@ def main():
                 return
         for update in updatable:
             update.update(dt)
+        
+        for asteroid in asteroids:
+            if player.circle_shape(asteroid):
+                log_event("player_hit")
+                print("Game Over!")
+                return
+            player.circle_shape(asteroid)
         
         for draw in drawable:
             draw.draw(screen)
